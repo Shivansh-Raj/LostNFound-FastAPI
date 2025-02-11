@@ -1,0 +1,4 @@
+LostNFound-env
+app/__pycache__
+app/routes/__pycache__
+app/Notification/__pycache__
