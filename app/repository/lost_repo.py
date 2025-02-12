@@ -1,5 +1,5 @@
 import os, datetime
-from fastapi import HTTPException, UploadFile, File, Request , BackgroundTasks
+from fastapi import HTTPException, UploadFile, File, Request , BackgroundTasks, status
 from fastapi.responses import FileResponse
 from sqlalchemy.orm import Session
 from .. import models, schemas
@@ -114,6 +114,6 @@ async def get_nearby_lost_items(location: str, db: Session):
             matched_items.append(item)
             
     if not matched_items:
-        return {"message": "No similar lost items found nearby."}
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail= "No lost items were reported nearby.")
 
     return matched_items

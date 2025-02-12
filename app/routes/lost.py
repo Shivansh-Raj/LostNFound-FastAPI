@@ -68,4 +68,7 @@ async def get_lost_items_history(
 
 @router.get("/nearby-lost-items", response_model=List[schemas.LostItem])
 async def get_nearby_lost_items(location: str, db: Session = Depends(get_db)):
-    return await lost_repo.get_nearby_lost_items(location, db)
+    try:
+        return await lost_repo.get_nearby_lost_items(location, db)
+    except Exception as e:
+        raise e
