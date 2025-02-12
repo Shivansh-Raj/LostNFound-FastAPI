@@ -5,22 +5,23 @@ from sqlalchemy.orm import Session
 from fastapi import FastAPI, Depends, status, Response, HTTPException
 from .. import hashing
 from .authentication.oauth2 import custom_login
+from ..repository import user_repo
 
 router = APIRouter()
 
 get_db = database.get_db
 
+
 @router.post('/register')
-def create_user(request: schemas.User, db: Session = Depends(get_db)):
-    new_user = models.User(
-        name = request.username,
-        email = request.email,
-        password = hashing.Hash.bcrypt(request.password)
-    )
-    db.add(new_user)
-    db.commit()
-    db.refresh(new_user)
-    return new_user
+async def create_user(
+    request: schemas.User, 
+    db: Session = Depends(get_db)
+):
+    try:
+        return await user_repo.create_user(request, db)
+    except Exception as e:
+        raise e
+
 
 @router.post("/login")
 async def login(
@@ -28,14 +29,14 @@ async def login(
     password: str = Form(...),
     db: Session = Depends(get_db),
 ):
-    return custom_login(username, password, db)
+    return await user_repo.login(username, password, db)
 
 @router.get('/{id}', response_model=schemas.ShowUser)
-def get_user(id: int, db: Session = Depends(get_db)):
-    user = db.query(models.User).filter(models.User.id == id).first()
-    # all_blogs = db.query(models.Blog).filter(models.Blog.user_id == id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    return user
+async def get_user(id: int, db: Session = Depends(get_db)):
+    
+    try:
+        return await user_repo.get_user(id, db)
+    except Exception as e:
+        raise e
 
 
