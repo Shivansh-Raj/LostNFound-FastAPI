@@ -13,8 +13,8 @@ async def check_among_found_and_notify(
     items = db.query(models.FoundItem).all()  
     for item in items:
         
-        description_match = fuzz.token_set_ratio(description, item.description) > 80  
-        location_match = fuzz.token_set_ratio(location, item.location) > 80  
+        description_match = fuzz.token_set_ratio(description, item.description) > 70  
+        location_match = fuzz.token_set_ratio(location, item.location) > 60  
 
         if description_match and location_match:
             item_user = db.query(models.User).filter(models.User.id == item.finder_id).first()
@@ -32,8 +32,8 @@ async def check_among_lost_and_notify(
     items = db.query(models.LostItem).all()  
     for item in items:
         
-        description_match = fuzz.token_set_ratio(description, item.description) > 80  
-        location_match = fuzz.token_set_ratio(location, item.location) > 80  
+        description_match = fuzz.token_set_ratio(description, item.description) > 70  
+        location_match = fuzz.token_set_ratio(location, item.location) > 70  
 
         if description_match and location_match:
             item_user = db.query(models.User).filter(models.User.id == item.owner_id).first()

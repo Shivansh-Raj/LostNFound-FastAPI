@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, UploadFile, File, Request, BackgroundTasks, status
+from fastapi import HTTPException, UploadFile, File, Request, BackgroundTasks, status
 from sqlalchemy.orm import Session
 from app import models, schemas
 from ..routes.authentication.oauth2 import get_current_user
@@ -6,8 +6,6 @@ import os, datetime
 from thefuzz import process,fuzz
 from ..Notification import send_mail, check_notify
 
-
-router = APIRouter()
 
 
 async def report_found_item(
