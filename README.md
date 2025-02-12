@@ -54,12 +54,64 @@ uvicorn main:app --reload
 - **POST** `/user/register` - Register a new user
 - **POST** `/user/login` - Authenticate and get JWT token
 
-### Lost & Found Items
-- **POST** `/lost-items/` - Report a lost item
-- **POST** `/found-items/` - Report a found item
-- **POST** `/lost-items/claim/{id}` - Claim a found item
-- **GET** `/lost-items/history` - View user's lost item history
-- **GET** `/nearby-lost-items?location=xyz` - Filter lost items by location
+# Lost & Found Items API
+
+## Lost Items
+
+### `GET /lost-items/`
+- Retrieve all lost items
+
+### `POST /lost-items/`
+- Report a lost item
+
+### `DELETE /lost-items/{id}`
+- Delete a lost item
+
+### `GET /lost-items/images/{item_id}`
+- Get lost item image
+
+### `POST /lost-items/claim/{id}`
+- Claim a found item
+
+### `GET /lost-items/history`
+- Retrieve lost items history
+
+### `GET /lost-items/nearby-lost-items?location={location}`
+- Find lost items nearby (filtered by location)
+
+## Found Items
+
+### `GET /found-items/`
+- Retrieve all found items
+
+### `POST /found-items/`
+- Report a found item
+
+### `DELETE /found-items/{id}`
+- Remove a found item
+
+### `GET /found-items/images/{item_id}`
+- Get found item image
+
+### `GET /found-items/nearby-found-items?location={location}`
+- Find found items nearby (filtered by location)
+
+## Matching
+
+### `GET /match-items/`
+- Get matched lost and found items (return items that are possibly a match)
+
+## Users
+
+### `POST /user/register`
+- Register a new user
+
+### `POST /user/login`
+- Authenticate and log in a user
+
+### `GET /user/{id}`
+- Get user details by ID
+
 
 ### Automated Notifications
 - When a new lost or found item is reported, the system checks for potential matches using `TheFuzz`.
