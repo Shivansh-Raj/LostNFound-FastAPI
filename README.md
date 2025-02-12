@@ -26,8 +26,8 @@ This is a FastAPI-based Lost & Found system that allows users to report lost and
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/lostnfound-api.git
-   cd lostnfound-api
+   git clone https://github.com/Shivansh-Raj/LostNFound-FastAPI.git
+   cd app
    ```
 2. Create a virtual environment and activate it:
    ```bash
