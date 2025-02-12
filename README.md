@@ -2,6 +2,11 @@
 
 This is a FastAPI-based Lost & Found system that allows users to report lost and found items, upload images, and receive automated email notifications when a match is found. The system uses JWT authentication for secure access and TheFuzz library for approximate text matching.
 
+## Live Demo
+
+- Check out the live version of the API at: [Live API](https://lostnfound-fastapi.onrender.com/docs)
+
+
 ## Features
 - **Report Lost & Found Items**: Users can report lost or found items along with an optional image.
 - **Image Upload**: Supports uploading images for better identification.
