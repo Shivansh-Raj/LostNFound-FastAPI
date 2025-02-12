@@ -48,12 +48,6 @@ Start the FastAPI server:
 uvicorn main:app --reload
 ```
 
-## API Endpoints
-
-### Authentication
-- **POST** `/user/register` - Register a new user
-- **POST** `/user/login` - Authenticate and get JWT token
-
 # Lost & Found Items API
 
 ## Lost Items
