@@ -1,7 +1,6 @@
-from .. import schemas, database, models
-from typing import List
+from .. import schemas, models
 from sqlalchemy.orm import Session 
-from fastapi import FastAPI, Depends, status, Response, HTTPException
+from fastapi import FastAPI, status, HTTPException
 from .. import hashing
 from ..routes.authentication.oauth2 import custom_login
 from email_validator import validate_email, EmailNotValidError

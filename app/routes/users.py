@@ -1,10 +1,7 @@
 from fastapi import APIRouter, Depends, Form
-from .. import schemas, database, models
-from typing import List
+from .. import schemas, database
 from sqlalchemy.orm import Session 
 from fastapi import FastAPI, Depends, status, Response, HTTPException
-from .. import hashing
-from .authentication.oauth2 import custom_login
 from ..repository import user_repo
 
 router = APIRouter()
